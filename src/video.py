@@ -8,7 +8,10 @@ class Video:
 
     @property
     def title(self):
-        return self.video()['items'][0]['snippet']['title']
+        try:
+            return self.video()['items'][0]['snippet']['title']
+        except:
+            return None
 
     @property
     def url(self):
@@ -16,12 +19,16 @@ class Video:
 
     @property
     def view_count(self):
-        return self.video()['items'][0]['statistics']['viewCount']
-
+        try:
+            return self.video()['items'][0]['statistics']['viewCount']
+        except:
+            return None
     @property
     def like_count(self):
-        return self.video()['items'][0]['statistics']['likeCount']
-
+        try:
+            return self.video()['items'][0]['statistics']['likeCount']
+        except:
+            return None
 
     def video(self):
         video = Channel.get_service().videos().list(part='snippet,statistics,contentDetails,topicDetails',
